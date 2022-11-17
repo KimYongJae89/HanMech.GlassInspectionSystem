@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Sql>
+  <CreateResultPanel>
+    Insert Into dbo.tblResult values(@ID, @GlassID, @Result, @ImagePath, @Updated, @DftCount, @TotalCamCount, @ThumbnailRatio)
+    </CreateResultPanel>
+ 
+  <CreateDefectPanel>
+    Insert Into dbo.tblResult values(@ID, @PID, @CamNo, @DftType, @RealPosX, @RealPosY, @BoundingPosX, @BoundingPosY, @BoundingWidth, @BoundingHeight, @Score)
+    </CreateDefectPanel>
+
+  <CreateDailyPanel>
+    Insert Into dbo.tblResult values(@ID, @Updated, @OKCount, @NGCount, @WarningCount)
+    </CreateDailyPanel>
+
+  <SerchingAllResult>
+    select * from dbo.tblResult
+    </SerchingAllResult>
+
+  <SerchingGlassID>
+    select * from dbo.tblResult where GlassID like @GlassID
+  </SerchingGlassID>
+
+  <SerchingDate>
+    select * from dbo.tblResult where Updated between CONVERT(varchar(8), @fromDate, 112) and @toDate
+  </SerchingDate>
+
+  <SerchingAllDefect>
+    select * from dbo.tblDefect
+    </SerchingAllDefect>
+
+  <SerchingBroken>
+    select * from dbo.tblDefect where DftType like @Broken
+    </SerchingBroken>
+
+  <SerchingCrack>
+    select * from dbo.tblDefect where DftType like @Crack 
+    </SerchingCrack>
+
+  <SerchingChipping>
+    select * from dbo.tblDefect where DftType like @Chipping
+    </SerchingChipping>
+
+  <UpdateRealPos>
+       Update dbo.tblDefect Set RealPosX = @RealPosX, RealPosY = @RealPosY Where CamNo = @CamNo
+    </UpdateRealPos>
+
+  <SearchingResultCountToday>
+       Select Result From dbo.tblResult Where Date(Updated) = @Today
+    </SearchingResultCountToday>
+</Sql>

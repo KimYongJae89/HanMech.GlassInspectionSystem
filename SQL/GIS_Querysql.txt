@@ -1,0 +1,36 @@
+USE [GIS.AI]
+create table tblResult(
+	ID int identity(1,1) primary key,
+	GlassID nvarchar(50),
+	Result nvarchar(50),
+	ImagePath nvarchar(255),
+	Updated DateTime,
+	DftCount int,
+	TotalCamCount int,
+	ThumbnailRatio int
+);
+create table tblDefect(
+	ID int identity(1,1) primary key,
+	PID int,
+	CamNo int,
+	DftType nvarchar(50),
+	Updated DateTime,
+	RealPosX float,
+	RealPosY float,
+	BoundingPosX float,
+	BoundingPosY float,
+	BoundingWidth float,
+	BoundingHeight float,
+	Score float,
+	InspectionType nvarchar(50),
+	MergeTopOffset int,
+);
+
+create table DailyInformation(
+	ID int identity(1,1) primary key,
+	Updated DateTime,
+	OKCount int,
+	NGCount int,
+	WarningCount int,
+);
+GO
